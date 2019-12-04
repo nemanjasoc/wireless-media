@@ -5,17 +5,15 @@
 
             <div class="menu">
                 <ul class="menu-text">
-                    <li><a href="">HOME</a></li> /
-                    <li><a href="">ABOUT US</a></li> /
-                    <li><a href="">OUR WORK</a></li> /
-                    <li><a href="">CONTACT</a></li>
+                    <li v-for="menuLi in menuText" :key="menuLi.id">
+                        <a href="">{{ menuLi.menu_text }}</a>
+                    </li> 
                 </ul>
 
                 <ul class="menu-icons">
-                    <li><a href=""><img src="../assets/images/tablet-menu-home.png" alt="home"></a></li>
-                    <li><a href=""><img src="../assets/images/tablet-menu-question-mark.png" alt="question-mark"></a></li>
-                    <li><a href=""><img src="../assets/images/tablet-menu-hat.png" alt="hat"></a></li>
-                    <li><a href=""><img src="../assets/images/tablet-menu-letter.png" alt="letter"></a></li>
+                    <li v-for="menuIcon in menuIcons" :key="menuIcon.id">
+                        <a href=""><img :src="getImgUrl(menuIcon.img)" :alt="menuIcon.img"></a>
+                    </li>
                 </ul>
 
                 <div class="menu-bar">
@@ -32,21 +30,34 @@
 
         <div id="dropdown-content" class="dropdown-content" :class="{ inactive: !dropdownMenu }">
             <ul class="menu-text-mobile">
-                <li><a href="">HOME</a></li> 
-                <li><a href="">ABOUT US</a></li> 
-                <li><a href="">OUR WORK</a></li> 
-                <li><a href="">CONTACT</a></li>
+                <li v-for="dropdownLi in dropdown" :key="dropdownLi.id">
+                    <a href="">{{ dropdownLi.menu_text }}</a>
+                </li>
             </ul>
         </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     data() {
         return {
             isSearchClicked: false,
             dropdownMenu: false
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'menuText',
+            'menuIcons',
+            'dropdown'
+        ])
+    },
+    methods: {
+        getImgUrl(pic) {
+            return require('../assets/images/'+pic)
         }
     }
 }
@@ -156,6 +167,7 @@ li {
 }
 
 /*media query*/
+
 @media only screen and (max-width: 768px) {
     .menu-text {
         li {
@@ -218,7 +230,7 @@ li {
 
 @media only screen and (max-width: 420px) {
     .logo {
-        width: 120px;
+        width: 103px;
         height: 40px;
     }
 
