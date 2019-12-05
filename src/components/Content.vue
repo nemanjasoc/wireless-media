@@ -57,7 +57,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .carousel-container-background {
     background-image: url("../assets/images/carousel-dots.png");
     background-repeat: no-repeat;
