@@ -64,6 +64,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'src/scss/mixins';
+
 .header-wrapper {
     display: flex;
     flex-direction: column;
@@ -104,6 +106,7 @@ export default {
 
     a {
         cursor: pointer;
+        @include transition-vendors(color 0.3s ease);
 
         &:visited {
             color: #1375b8;
@@ -199,27 +202,14 @@ li {
 
     .menu-icons {
         display: inline;
-    }
 
-    .menu-icons li a img {
-        width: 16px;
-        height: 16px;
-        cursor: pointer;
- 
-        &:visited {
-            color: #1375b8;
-        }
-
-        &:hover {
-            color: #d6e49e;  
-        }
-
-        &:focus {
-            color: #74a8af;
-        }
-
-        &:active {
-            color: #bfd6b8;
+        li {
+            a {
+                img {
+                    width: 16px;
+                    cursor: pointer;
+                }
+            }
         }
     }
 
@@ -267,17 +257,21 @@ li {
 
             li {
                 padding: 5px;
+                
 
                 &:nth-child(1) {
                     background-color: #bbd547;
+                    margin-bottom: 1px;
                 }
 
                 &:nth-child(2) {
                     background-color: #81b36e;
+                    margin-bottom: 1px;
                 }
 
                 &:nth-child(3) {
                     background-color: #429099;
+                    margin-bottom: 1px;
                 }
 
                 &:nth-child(4) {
@@ -286,6 +280,12 @@ li {
 
                 a {
                     padding-left: 10px;
+                    color: #ffffff;
+                    @include transition-vendors(color 0.3s ease);
+
+                    &:hover {
+                        color: #9d9d9c;
+                    }
                 }
             }
 

@@ -54,7 +54,6 @@ export default {
 
 .social-networks {
     display: flex;
-    position: relative;
 
     li {    
         background-color: #fff;

@@ -32,6 +32,26 @@ const state = {
             id: 4,
             img: 'heart-box.png' 
         }
+    ],
+    slides:[
+        {
+            id: 1,
+            img: 'carousel-group.png',
+            carousel_text: 'LOREM IPSUM DOLOR SIT',
+            arrow_text: 'LOREM IPSUM DOLOR SIT'
+        },
+        {
+            id: 2,
+            img: 'carousel-group.png',
+            carousel_text: 'LOREM IPSUM DOLOR SIT',
+            arrow_text: 'LOREM IPSUM DOLOR SIT' 
+        },
+        {
+            id: 3,
+            img: 'carousel-group.png',
+            carousel_text: 'LOREM IPSUM DOLOR SIT',
+            arrow_text: 'LOREM IPSUM DOLOR SIT' 
+        }
     ]
 }
 
@@ -41,6 +61,9 @@ const getters = {
     },
     boxImages: function (state) {
         return state.boxImages;
+    },
+    slides: function (state) {
+        return state.slides;
     }
 }
 

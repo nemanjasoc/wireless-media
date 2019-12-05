@@ -1,17 +1,19 @@
 <template>
     <div>
-        <div class="carousel-container-background">
-            <div class="carousel-container">
-                <img src="../assets/images/carousel-group.png" alt="carousel-group">
-                <h1 class="carousel-text">LOREM IPSUM<br>DOLOR SIT</h1>
-                <div class="carousel-arrows">
-                    <img src="../assets/images/left-carousel-arrow.png" alt="left-carousel-arrow">
-                    <h3 class="carousel-arrows-text">LOREM IPSUM DOLOR SIT</h3>
-                    <img src="../assets/images/right-carousel-arrow.png" alt="right-carousel-arrow">
+        <carousel :navigationEnabled="true" :perPageCustom="[[200, 1]]" paginationActiveColor="#bcd546" paginationColor="#bababa">
+            <slide v-for="slide in slides" :key="slide.id">
+                 <div class="carousel-container-background">
+                    <div class="carousel-container">
+                        <img :src="getImgUrl(slide.img)" :alt="slide.img">
+                        <h1 class="carousel-text">{{ slide.carousel_text }}</h1>
+                        <div class="carousel-arrows">
+                            <h3 class="carousel-arrows-text">{{ slide.arrow_text }}</h3>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
+            </slide>
+        </carousel>
+        
         <div class="box-wrapper">
             <h2 class="box-title">WHO WE ARE</h2>
             <div class="box-container" v-for="box in boxes" :key="box.id">
@@ -41,23 +43,31 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { Carousel, Slide } from 'vue-carousel';
 
 export default {
     computed: {
         ...mapGetters([
             'boxes',
-            'boxImages'
+            'boxImages',
+            'slides'
         ])
     },
     methods: {
         getImgUrl(pic) {
             return require('../assets/images/'+pic)
         }
+    },
+    components: {
+        Carousel,
+        Slide
     }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import 'src/scss/mixins';
+
 .carousel-container-background {
     background-image: url("../assets/images/carousel-dots.png");
     background-repeat: no-repeat;
@@ -69,22 +79,38 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 75px 20px;
-    border-bottom: 1px solid #fafafa;
+    padding: 0px 20px;
+    border-bottom: 1px solid #d5d5d5;
+    height: 320px;
 
     img {
         padding-right: 25px;
     }
-}
 
-.carousel-text {
-    color: #757575;
-    font-size: 40px;
-    font-weight: 500;
+    .carousel-text {
+        color: #757575;
+        font-size: 40px;
+        font-weight: 500;
+    }
 }
 
 .carousel-arrows {
     display: none;
+}
+
+.box-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.box-title {
+    color: #757575;
+    text-align: center;
+    width: 60%;
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 25px;
 }
 
 .box-container {
@@ -101,26 +127,6 @@ export default {
         align-items: center;
         display: flex;
         justify-content: center;
-
-        img {
-            cursor: pointer;
-
-            &:visited {
-                color: #bbd547;
-            }
-
-            &:hover {
-                color: #bbd547;
-            }
-
-            &:focus {
-                color: #bbd547;
-            }
-
-            &:active {
-                color: #bbd547;
-            }
-        }
     }
 
     .text-box {
@@ -130,21 +136,6 @@ export default {
         flex-direction: column;
         margin: 20px 10px 10px 10px;
     }
-}
-
-.box-wrapper {
-    display: flex;
-    flex-direction: column;
-}
-
-.box-title {
-    color: #757575;
-    text-align: center;
-    width: 60%;
-    margin-top: 20px;
-    margin-bottom: 0;
-    font-weight: 500;
-    font-size: 25px;
 }
 
 h4, p {
@@ -169,33 +160,72 @@ h4, p {
         height: 20px;
         color: #959595;
         margin: 0 10px;
+        @include transition-vendors(background-color 0.3s ease);
+        @include transition-vendors(color 0.3s ease);
+
+        &:visited {
+            background-color: #bbd547;
+            color: #ffffff;
+        }
+
+        &:hover {
+            background-color: #bbd547;
+            color: #ffffff;  
+        }
+
+        &:focus {
+            background-color: #bbd547;
+            color: #ffffff;
+        }
+
+        &:active {
+            background-color: #bbd547;
+            color: #ffffff;
+        }
+    }
+}
+
+.VueCarousel {
+    position: relative;
+
+    .VueCarousel-pagination {
+        position: absolute;
+        top: 230px;
     }
 }
 
 /*media query*/
 
 @media only screen and (max-width: 600px) {
-    .carousel-text {
-        font-size: 34px;
-    }
-
     .carousel-container {
         img {
             width: 120px;
             height: 120px;
         }
+
+        .carousel-text {
+            font-size: 34px;
+        }
     }
 }
 
 @media only screen and (max-width: 480px) {
-    .carousel-text {
-        font-size: 25px;
-    }
-
     .carousel-container {
+        height: 280px;
+
         img {
             width: 100px;
             height: 100px;
+        }
+
+        .carousel-text {
+            font-size: 25px;
+        }
+    }
+
+    .VueCarousel {
+        .VueCarousel-pagination {
+            top: 190px;
         }
     }
 }
@@ -203,13 +233,6 @@ h4, p {
 @media only screen and (max-width: 420px) {
     .carousel-text {
         font-size: 20px;
-    }
-
-    .carousel-container {
-        img {
-            width: 90px;
-            height: 90px;
-        }
     }
 
     .box-title {
@@ -228,42 +251,39 @@ h4, p {
 }
 
 @media only screen and (max-width: 320px) {
-    .carousel-text {
-        display: none;
-    }
-
     .carousel-container {
         display: flex;
         flex-direction: column;
-        padding: 20px 0 0 0;
-        
+        padding: 0;
+        height: 190px;
+        position: relative;
+
         img {
-            width: 80px;
-            height: 80px;
+            margin-top: -60px;
+        }
+
+        .carousel-text {
+            display: none;
         }
     }
 
     .carousel-arrows {
         display: flex;
         background-color: white;
-        margin-top: 20px;
         justify-content: center;
         align-items: center;
         text-align: center;
         width: 100%;
-        border-bottom: 1px solid #fafafa;
+        border-bottom: 1px solid #d5d5d5;
+        border-top: 1px solid #d5d5d5;
+        position: absolute;
+        bottom: 0;
+        height: 58px;
 
         .carousel-arrows-text {
-            font-size: 12px;
+            font-size: 16px;
             color: #757575;
-            font-weight: 600;
-        }
-
-        img {
-            width: 8px;
-            height: 12px;
-            cursor: pointer;
-            margin: 0 20px;
+            font-weight: 500;
         }
     }
 
@@ -291,6 +311,28 @@ h4, p {
 
     p {
         display: none;
+    }
+
+    .VueCarousel-pagination {
+        display: none;
+    }
+
+    .VueCarousel-navigation {
+        position: relative;
+
+        .VueCarousel-navigation-prev {
+            position: absolute;
+            top: -32px;
+            left: 28px;
+            color: #9d9d9c;
+        }
+
+        .VueCarousel-navigation-next {
+            position: absolute;
+            top: -32px;
+            right: 28px;
+            color: #9d9d9c;
+        }
     }
 }
 </style>
