@@ -30,7 +30,7 @@
 
         <div id="dropdown-content" class="dropdown-content" :class="{ inactive: !dropdownMenu }">
             <ul class="menu-text-mobile">
-                <li v-for="dropdownLi in dropdown" :key="dropdownLi.id">
+                <li v-for="dropdownLi in menuText" :key="dropdownLi.id">
                     <a href="">{{ dropdownLi.menu_text }}</a>
                 </li>
             </ul>
@@ -51,8 +51,7 @@ export default {
     computed: {
         ...mapGetters([
             'menuText',
-            'menuIcons',
-            'dropdown'
+            'menuIcons'
         ])
     },
     methods: {
@@ -123,6 +122,15 @@ export default {
                 color: #bfd6b8;
             }
         }
+
+        &:after {
+            content: '/';
+            margin-left: 10px;
+        }
+
+        &:last-child:after {
+            display: none;
+        }
     }
 }
 
@@ -144,7 +152,7 @@ export default {
     width: 17px; 
     height: 16px;
     @include sprite-mixin;  
-    background: url('../assets/images/search-sprite.png') no-repeat; 
+    background: url('../assets/images/search-sprite.png') no-repeat;
 }
  
 .spriteimagesearch { 
@@ -209,6 +217,7 @@ li {
 
     .spriteimagesearch {
         margin-left: 25px;
+        flex-shrink: 0;
     }
 }
 
@@ -404,6 +413,8 @@ li {
                 height: 16px; 
                 background: url('../assets/images/bar-sprite.png') no-repeat; 
                 @include sprite-mixin;
+                position: relative;
+                top: 2px;
             }
             
             .spriteimagebar { 

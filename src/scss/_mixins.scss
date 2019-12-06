@@ -1,4 +1,4 @@
-@mixin transition-vendors($property) {
+@mixin transition-vendors($property...) {
 	-webkit-transition: $property;
     -moz-transition: $property;
     -o-transition: $property;

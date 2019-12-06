@@ -7,7 +7,7 @@
         </div>
 
         <ul class="menu-text">
-            <li v-for="menuLi in dropdown" :key="menuLi.id">
+            <li v-for="menuLi in menuText" :key="menuLi.id">
                 <a href="">{{ menuLi.menu_text }}</a>
             </li> 
         </ul>
@@ -24,7 +24,7 @@ import { mapGetters } from 'vuex';
 export default {
     computed: {
         ...mapGetters([
-            'dropdown',
+            'menuText',
             'networks'
         ])
     },
@@ -58,7 +58,7 @@ export default {
     cursor: pointer;
     position: absolute;
     top: 6px;
-    left: 12px;
+    left: 13px;
 
     &:visited, &:hover, &:focus, &:active {
         background-position: -5px -0px

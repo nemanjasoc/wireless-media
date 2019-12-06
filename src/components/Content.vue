@@ -22,9 +22,9 @@
                 </div>
                 <div class="text-box">
                     <h4>{{ box.title }}</h4>
-                    <p>{{ box.text }}</p>
+                    <p :class="{'show': box.showParagraph}">{{ box.text }}</p>
                     <div class="more">
-                        <button class="more-button">{{ box.button_text }}</button>
+                        <button class="more-button" @click="activateCurrent(box)">{{ box.button_text }}</button>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,12 @@ export default {
     methods: {
         getImgUrl(pic) {
             return require('../assets/images/'+pic)
-        }
+        },
+
+        activateCurrent(box) {
+           box.showParagraph = !box.showParagraph;
+           this.$forceUpdate();
+        } 
     },
     components: {
         Carousel,
@@ -136,6 +141,10 @@ export default {
         display: flex;
         flex-direction: column;
         margin: 20px 10px 10px 10px;
+
+        h4 {
+            font-size: 12px;
+        }
     }
 }
 
@@ -263,8 +272,7 @@ h4, p {
         height: 20px;
         color: #959595;
         margin: 0 10px;
-        @include transition-vendors(background-color 0.3s ease);
-        @include transition-vendors(color 0.3s ease);
+        @include transition-vendors(background-color 0.3s ease, color 0.3s ease);
 
         &:visited {
             background-color: #bbd547;
@@ -349,6 +357,10 @@ h4, p {
 
         .text-box {
             width: 80%;
+
+            h4 {
+                font-size: 12px;
+            }
         }
     }
 }
@@ -397,19 +409,23 @@ h4, p {
 
         .text-box {
             width: 80%;
+
+            h4 {
+                font-size: 12px;
+            }
+
+            p {
+                display: none;
+
+                &.show {
+                    display: block;
+                }
+            }
         }
     }
 
     .box-title {
         font-size: 18px;
-    }
-
-    h4 {
-        font-size: 12px;
-    }
-
-    p {
-        display: none;
     }
 
     .VueCarousel-pagination {

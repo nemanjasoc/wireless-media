@@ -2,15 +2,15 @@ const state = {
     menuText:[
         { 
             id: 1, 
-            menu_text: 'HOME /'
+            menu_text: 'HOME'
         },
         { 
             id: 2, 
-            menu_text: 'ABOUT US /'   
+            menu_text: 'ABOUT US'   
         },
         { 
             id: 3, 
-            menu_text: 'OUR WORK /'   
+            menu_text: 'OUR WORK'   
         },
         { 
             id: 4, 
@@ -33,24 +33,6 @@ const state = {
         { 
             id: 4, 
             class_text:'spriteimagetablet-menu-letter'
-        }
-    ],
-    dropdown:[
-        { 
-            id: 1, 
-            menu_text: 'HOME'
-        },
-        { 
-            id: 2, 
-            menu_text: 'ABOUT US'   
-        },
-        { 
-            id: 3, 
-            menu_text: 'OUR WORK'   
-        },
-        { 
-            id: 4, 
-            menu_text: 'CONTACT'   
         }
     ]
 }
