@@ -2,35 +2,35 @@ const state = {
     boxes:[
         { 
             id: 1, 
-            img: 'hat-box.png',
             title: 'Lorem ipsum',
             text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.',
-            button_text: 'SHOW MORE'
+            button_text: 'SHOW MORE',
+            class_text:'spriteimagehat-box'
         },
         { 
             id: 2, 
-            img: 'like-box.png',
             title: 'Lorem ipsum',
             text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.',
-            button_text: 'SHOW MORE' 
+            button_text: 'SHOW MORE',
+            class_text:'spriteimagelike-box' 
         }
     ],
     boxImages:[
         {
             id: 1,
-            img: 'calculator-box.png' 
+            class_text:'spriteimagecalculator-box'  
         },
         {
             id: 2,
-            img: 'cloud-box.png' 
+            class_text:'spriteimagecloud-box'  
         },
         {
             id: 3,
-            img: 'watch-box.png' 
+            class_text:'spriteimagewatch-box' 
         },
         {
             id: 4,
-            img: 'heart-box.png' 
+            class_text:'spriteimageheart-box' 
         }
     ],
     slides:[

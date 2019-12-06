@@ -2,15 +2,15 @@ const state = {
     networks:[
         { 
             id: 1, 
-            img: 'footer-fb.png'
+            class_text:'spriteimagefooter-fb'
         },
         { 
             id: 2, 
-            img: 'footer-twitter.png'
+            class_text:'spriteimagefooter-twitter'
         },
         { 
             id: 3, 
-            img: 'footer-letter.png'
+            class_text:'spriteimagefooter-letter'
         }
     ]
 }

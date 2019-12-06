@@ -11,16 +11,16 @@
                 </ul>
 
                 <ul class="menu-icons">
-                    <li v-for="menuIcon in menuIcons" :key="menuIcon.id">
-                        <a href=""><img :src="getImgUrl(menuIcon.img)" :alt="menuIcon.img"></a>
-                    </li>
+                    <div v-for="menuIcon in menuIcons" :class="menuIcon.class_text" :key="menuIcon.id"></div>
                 </ul>
 
                 <div class="menu-bar">
-                    <div class="dropbtn"><img src="../assets/images/bar.png" alt="bar" @click="dropdownMenu = !dropdownMenu"></div>
+                    <div class="dropbtn">
+                        <div class="spriteimagebar" @click="dropdownMenu = !dropdownMenu"></div>
+                    </div>
                 </div>
 
-                <img class="search" src="../assets/images/search.png" alt="search" @click="isSearchClicked = !isSearchClicked">
+                <div class="spriteimagesearch" @click="isSearchClicked = !isSearchClicked"></div>
             </div>
         </div>
 
@@ -102,26 +102,26 @@ export default {
 
     li {
         font-size: 14px;
-    }
 
-    a {
-        cursor: pointer;
-        @include transition-vendors(color 0.3s ease);
+        a {
+            cursor: pointer;
+            @include transition-vendors(color 0.3s ease);
 
-        &:visited {
-            color: #1375b8;
-        }
+            &:visited {
+                color: #1375b8;
+            }
 
-        &:hover {
-            color: #d6e49e;  
-        }
+            &:hover {
+                color: #d6e49e;  
+            }
 
-        &:focus {
-            color: #74a8af;
-        }
+            &:focus {
+                color: #74a8af;
+            }
 
-        &:active {
-            color: #bfd6b8;
+            &:active {
+                color: #bfd6b8;
+            }
         }
     }
 }
@@ -139,16 +139,33 @@ export default {
     cursor: pointer;
 }
 
+.spriteimagesearch-colored,
+.spriteimagesearch { 
+    width: 17px; 
+    height: 16px;
+    @include sprite-mixin;  
+    background: url('../assets/images/search-sprite.png') no-repeat; 
+}
+ 
+.spriteimagesearch { 
+    background-position: -5px -21px; 
+    cursor: pointer;
+
+    &:visited, &:hover, &:focus, &:active {
+        background-position: -5px -0px
+    } 
+}
+
 li {
     display: inline;
-    padding: 0 8px;
+    padding: 0 6px;
 
     a {
         text-decoration: none;
     }
 }
 
-.search {
+.spriteimagesearch {
     margin-left: 50px;
     margin-right: 15px;
     cursor: pointer;
@@ -178,7 +195,7 @@ li {
         }
     }
 
-    .search {
+    .spriteimagesearch {
         margin-left: 35px;
     }
 }
@@ -190,7 +207,7 @@ li {
         }
     }
 
-    .search {
+    .spriteimagesearch {
         margin-left: 25px;
     }
 }
@@ -200,20 +217,153 @@ li {
         display: none;
     }
 
+    ul {
+        padding: 0;
+    }
+
     .menu-icons {
         display: inline;
+        position: relative;
+        cursor: pointer;
 
-        li {
-            a {
-                img {
-                    width: 16px;
-                    cursor: pointer;
-                }
+        .spriteimagehome-active, 
+        .spriteimagehome-focus, 
+        .spriteimagehome-hover, 
+        .spriteimagehove-visited, 
+        .spriteimagetablet-menu-home { 
+            width: 24px; 
+            height: 21px; 
+            background: url('../assets/images/menu-home.png') no-repeat; 
+            @include sprite-mixin;
+        }
+
+        .spriteimagetablet-menu-home { 
+            background-position: -5px -52px;
+            position: absolute;
+            left: -125px;
+            bottom: -10px;
+            
+            &:visited {
+                background-position: -34px -26px;
+            }
+
+            &:hover {
+                background-position: -5px -26px;
+            }
+
+            &:focus {
+                background-position: -34px -0px;
+            }
+
+            &:active {
+                background-position: -5px -0px;
+            }
+        }
+
+        .spriteimagequestion-mark-active, 
+        .spriteimagequestion-mark-focus, 
+        .spriteimagequestion-mark-hover, 
+        .spriteimagequestion-mark-visited, 
+        .spriteimagetablet-menu-question-mark { 
+            width: 21px; 
+            height: 21px; 
+            background: url('../assets/images/menu-question-mark.png') no-repeat; 
+            @include sprite-mixin;
+        }
+
+        .spriteimagetablet-menu-question-mark { 
+            background-position: -5px -52px;
+            position: absolute;
+            left: -90px;
+            bottom: -10px; 
+
+            &:visited {
+                background-position: -31px -26px;
+            }
+
+            &:hover {
+                background-position: -5px -26px;
+            }
+
+            &:focus {
+                background-position: -31px -0px;
+            }
+
+            &:active {
+                background-position: -5px -0px;
+            }
+        }
+
+        .spriteimagehat-active, 
+        .spriteimagehat-focus, 
+        .spriteimagehat-hover, 
+        .spriteimagehat-visited, 
+        .spriteimagetablet-menu-hat { 
+            width: 28px; 
+            height: 21px;
+            background: url('../assets/images/menu-hat.png') no-repeat; 
+            @include sprite-mixin;
+        }
+        
+        .spriteimagetablet-menu-hat { 
+            background-position: -5px -52px; 
+            position: absolute;
+            left: -60px;
+            bottom: -10px;
+
+            &:visited {
+                background-position: -38px -26px;
+            }
+
+            &:hover {
+                background-position: -5px -26px;
+            }
+
+            &:focus {
+                background-position: -38px -0px;
+            }
+
+            &:active {
+                background-position: -5px -0px;
+            }
+        }
+
+        .spriteimageletter-active, 
+        .spriteimageletter-focus, 
+        .spriteimageletter-hover, 
+        .spriteimageletter-visited, 
+        .spriteimagetablet-menu-letter {
+            width: 26px; 
+            height: 18px; 
+            background: url('../assets/images/menu-letter.png') no-repeat; 
+            @include sprite-mixin;
+        }
+        
+        .spriteimagetablet-menu-letter { 
+            background-position: -5px -46px;
+            position: absolute;
+            left: -20px;
+            bottom: -10px;
+            
+            &:visited {
+                background-position: -36px -23px;
+            }
+
+            &:hover {
+                background-position: -5px -23px;  
+            }
+
+            &:focus {
+                background-position: -36px -0px;
+            }
+
+            &:active {
+                background-position: -5px -0px;
             }
         }
     }
 
-    .search {
+    .spriteimagesearch {
         margin-left: 20px;
     }
 }
@@ -226,11 +376,11 @@ li {
 
     .menu-icons {
         li {
-            padding: 0 3px;
+            padding: 0 4px;
         }
     }
 
-    .search {
+    .spriteimagesearch {
         margin-left: 12px;
     }
 }
@@ -246,6 +396,25 @@ li {
 
     .menu-bar {
         display: block;
+
+        .dropbtn {
+            .spriteimagebar-colored, 
+            .spriteimagebar { 
+                width: 20px; 
+                height: 16px; 
+                background: url('../assets/images/bar-sprite.png') no-repeat; 
+                @include sprite-mixin;
+            }
+            
+            .spriteimagebar { 
+                background-position: -5px -21px; 
+                cursor: pointer;
+
+                &:visited, &:hover, &:focus, &:active {
+                    background-position: -5px -0px;
+                } 
+            }
+        }
     }
 
     .dropdown-content {
@@ -257,7 +426,6 @@ li {
 
             li {
                 padding: 5px;
-                
 
                 &:nth-child(1) {
                     background-color: #bbd547;

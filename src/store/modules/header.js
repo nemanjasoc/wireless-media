@@ -20,19 +20,19 @@ const state = {
     menuIcons:[
         { 
             id: 1, 
-            img: 'tablet-menu-home.png'
+            class_text:'spriteimagetablet-menu-home'
         },
         { 
             id: 2, 
-            img: 'tablet-menu-question-mark.png'
+            class_text:'spriteimagetablet-menu-question-mark'
         },
         { 
             id: 3, 
-            img: 'tablet-menu-hat.png'
+            class_text:'spriteimagetablet-menu-hat'
         },
         { 
             id: 4, 
-            img: 'tablet-menu-letter.png'
+            class_text:'spriteimagetablet-menu-letter'
         }
     ],
     dropdown:[

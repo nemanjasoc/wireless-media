@@ -18,7 +18,7 @@
             <h2 class="box-title">WHO WE ARE</h2>
             <div class="box-container" v-for="box in boxes" :key="box.id">
                 <div class="box">
-                    <img :src="getImgUrl(box.img)" :alt="box.img">
+                    <div :class="box.class_text"></div>
                 </div>
                 <div class="text-box">
                     <h4>{{ box.title }}</h4>
@@ -34,7 +34,7 @@
             <h2 class="box-title">WHAT WE DO</h2>
             <div class="box-container">
                 <div class="box" v-for="boxImage in boxImages" :key="boxImage.id">
-                    <img :src="getImgUrl(boxImage.img)" :alt="boxImage.img">
+                    <div :class="boxImage.class_text"></div>
                 </div>
             </div>
         </div>
@@ -127,6 +127,7 @@ export default {
         align-items: center;
         display: flex;
         justify-content: center;
+        position: relative;
     }
 
     .text-box {
@@ -135,6 +136,108 @@ export default {
         display: flex;
         flex-direction: column;
         margin: 20px 10px 10px 10px;
+    }
+}
+
+.spriteimagehat-box-colored, 
+.spriteimagehat-box { 
+    width: 60px; 
+    height: 46px; 
+    background: url('../assets/images/hat-box-sprite.png') no-repeat; 
+    @include sprite-mixin;
+}
+
+.spriteimagehat-box { 
+    background-position: -5px -51px; 
+    cursor: pointer;
+    
+    &:visited, &:hover, &:focus, &:active {
+        background-position: -5px -0px
+    }
+}
+
+.spriteimagelike-box-colored, 
+.spriteimagelike-box { 
+    width: 46px; 
+    height: 47px;  
+    background: url('../assets/images/like-box-sprite.png') no-repeat; 
+    @include sprite-mixin;
+}
+ 
+.spriteimagelike-box { 
+    background-position: -5px -52px;
+    cursor: pointer; 
+    
+    &:visited, &:hover, &:focus, &:active {
+        background-position: -5px -0px
+    }
+}
+
+.spriteimagecalculator-box-colored, 
+.spriteimagecalculator-box { 
+    width: 40px; 
+    height: 45px; 
+    background: url('../assets/images/calculator-box-sprite.png') no-repeat; 
+    @include sprite-mixin;
+}
+ 
+.spriteimagecalculator-box { 
+    background-position: -5px -50px;
+    cursor: pointer; 
+
+     &:visited, &:hover, &:focus, &:active {
+        background-position: -5px -0px
+    }
+}
+
+.spriteimagecloud-box-colored, 
+.spriteimagecloud-box { 
+    width: 57px; 
+    height: 39px; 
+    background: url('../assets/images/cloud-box-sprite.png') no-repeat;
+    @include sprite-mixin;
+}
+ 
+.spriteimagecloud-box { 
+    background-position: -5px -44px;
+    cursor: pointer;
+
+    &:visited, &:hover, &:focus, &:active {
+        background-position: -5px -0px
+    }
+}
+
+.spriteimagewatch-box-colored, 
+.spriteimagewatch-box { 
+    width: 45px; 
+    height: 45px;  
+    background: url('../assets/images/watch-box-sprite.png') no-repeat; 
+    @include sprite-mixin;
+}
+ 
+.spriteimagewatch-box { 
+    background-position: -5px -50px; 
+    cursor: pointer;
+
+    &:visited, &:hover, &:focus, &:active {
+        background-position: -5px -0px
+    }
+}
+
+.spriteimageheart-box-colored, 
+.spriteimageheart-box { 
+    width: 50px; 
+    height: 45px; 
+    background: url('../assets/images/heart-box-sprite.png') no-repeat; 
+    @include sprite-mixin;
+}
+ 
+.spriteimageheart-box { 
+    background-position: -5px -50px;
+    cursor: pointer;
+
+    &:visited, &:hover, &:focus, &:active {
+        background-position: -5px -0px;
     }
 }
 
@@ -290,10 +393,6 @@ h4, p {
     .box-container {
         .box {
             width: 80%;
-
-            img {
-                width: 38px;
-            }
         }
 
         .text-box {

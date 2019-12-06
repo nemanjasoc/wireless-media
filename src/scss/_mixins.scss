@@ -4,3 +4,10 @@
     -o-transition: $property;
     transition: $property;
 }
+
+@mixin sprite-mixin {
+    display: inline-block;  
+    overflow: hidden; 
+    text-indent: -9999px; 
+    text-align: left; 
+}
