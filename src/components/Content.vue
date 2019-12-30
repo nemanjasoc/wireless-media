@@ -57,7 +57,6 @@ export default {
         getImgUrl(pic) {
             return require('../assets/images/'+pic)
         },
-
         activateCurrent(box) {
            box.showParagraph = !box.showParagraph;
            this.$forceUpdate();
